@@ -1,6 +1,6 @@
 #include "Channel.h"
 #include "Logger.h"
-
+#include"EventLoop.h"
 
 #include <iostream>
 #include <memory>
@@ -42,12 +42,14 @@ void Channel::tie(const std::shared_ptr<void> &obj)
 /**在EventLoop中调用 删除当前channel */
 void Channel::remove()
 {
+    loop_->removeChannel(this);
 }
 /**通过EventLoop在poller调用 更新epoll状态 (epoll_ctl_(add,mod,del))*/
 void Channel::update()
 {
-    //loop_->update();
+   loop_->updateChannel(this);
 }
+
 /**处理poller回应的事件*/
 void Channel::handleEvent(Timestamp receiveTime)
 {

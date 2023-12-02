@@ -5,6 +5,7 @@
 
 #include<vector>
 #include<unordered_map>
+#include<memory>
 
 class Channel;
 class EventLoop;
@@ -27,7 +28,7 @@ public:
     /**判断当前的poller是否有指定channel*/
     bool hasChannel(Channel* target)const;
     /**根据EventLoop 返回单例poller*/
-    static Poller* newDefaultPoller(EventLoop* loop);
+    static std::unique_ptr<Poller> newDefaultPoller(EventLoop* loop);
 
     Poller(EventLoop* loop);
     Poller(/* args */) = default;
