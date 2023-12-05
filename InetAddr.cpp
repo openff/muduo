@@ -39,3 +39,6 @@ std::string InetAddr::toIpPort()
     ipPort += ":" + std::to_string(toPort());
     return ipPort;
 }
+void InetAddr::setSockAddrInet4(sockaddr_in *addr){
+    addr_=*addr;
+}

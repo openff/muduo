@@ -13,6 +13,8 @@ public:
     std::string toIp();
     std::string toIpPort();
     uint16_t toPort();
+    void setSockAddrInet4(sockaddr_in *addr);
+    const sockaddr_in* getSockAddrInet4() const  { return &addr_;}
     ~InetAddr(){}
 };
 

@@ -131,6 +131,7 @@ void EventLoop::queueInLoop(Functor cb)
 
     /**
      * 非当前线程 or 当前线程正在清理回调函数集合时 则唤醒
+     * || callingPendingFunctor_ 表示当前线程正在执行回调时 又有新的了。唤醒其他线程去接受
      */
     if (!isInLoopThread() || callingPendingFunctor_)
     {
